@@ -125,7 +125,7 @@ Join the [Discussions](https://github.com/alfredang/faceswap/discussions) for qu
 
 <div align="center">
 
-### Developed by [Tertiary Infotech Academy Pte. Ltd.](https://www.tertiaryinfotech.com)
+### Powered by [Tertiary Infotech Academy Pte Ltd](https://www.tertiarycourses.com.sg/)
 
 ### Acknowledgements
 

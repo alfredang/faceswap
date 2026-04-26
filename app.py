@@ -30,16 +30,30 @@ def swap_face(original_image: np.ndarray, reference_image: np.ndarray) -> np.nda
     return cv2.cvtColor(result_bgr, cv2.COLOR_BGR2RGB)
 
 
-demo = gr.Interface(
-    fn=swap_face,
-    inputs=[
-        gr.Image(label="Original Image (face to replace)", type="numpy"),
-        gr.Image(label="Reference Image (new face to apply)", type="numpy"),
-    ],
-    outputs=gr.Image(label="Result"),
-    title="Face Swap",
-    description="Upload an original image and a reference image. The face in the original image will be replaced with the face from the reference image.",
-)
+with gr.Blocks(title="Face Swap") as demo:
+    gr.Markdown("# Face Swap")
+    gr.Markdown(
+        "Upload an original image and a reference image. "
+        "The face in the original image will be replaced with the face from the reference image."
+    )
+    with gr.Row():
+        with gr.Column():
+            original = gr.Image(label="Original Image (face to replace)", type="numpy")
+            reference = gr.Image(label="Reference Image (new face to apply)", type="numpy")
+            with gr.Row():
+                clear_btn = gr.ClearButton([original, reference], value="Clear")
+                submit_btn = gr.Button("Submit", variant="primary")
+        with gr.Column():
+            result = gr.Image(label="Result")
+
+    submit_btn.click(fn=swap_face, inputs=[original, reference], outputs=result)
+    clear_btn.add(result)
+
+    gr.Markdown(
+        '<div style="text-align:center; margin-top:1rem; color:#888; font-size:0.85rem;">'
+        'Powered by <a href="https://www.tertiarycourses.com.sg/" target="_blank">'
+        "Tertiary Infotech Academy Pte Ltd</a></div>"
+    )
 
 if __name__ == "__main__":
     demo.launch()
